@@ -19,7 +19,7 @@ namespace DatingApp.Api.Data
             {
                 return null;
             } 
-            if(!VerifyPasswordHash(password,user.passwordHash, user.PasswordSalt))
+            if(!VerifyPasswordHash(password,user.PasswordHash, user.PasswordSalt))
             return null;
             //throw new System.NotImplementedException();
             return user;
@@ -43,7 +43,7 @@ namespace DatingApp.Api.Data
         {
             byte[] passwordHash , passworrdSalt;
             CreatePasswordHash(password,out passwordHash,out passworrdSalt);
-            user.passwordHash = passwordHash;
+            user.PasswordHash = passwordHash;
             user.PasswordSalt=passworrdSalt;
 
             await _context.Users.AddAsync(user);
