@@ -93,7 +93,8 @@ namespace DatingApp.Api.Controllers
             return BadRequest("Could not add the photo");
         }
 
-        /*[HttpPost("{id}/setMain")]
+       
+        [HttpPost("{id}/setMain")]
         public async Task<IActionResult> SetMain(int userId, int id)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -120,7 +121,7 @@ namespace DatingApp.Api.Controllers
             return BadRequest("Could not set photo to main");
         }
 
-        [HttpDelete("{id}")]
+      /*[HttpDelete("{id}")]
         public async Task<IActionResult> DeletePhoto(int userId, int id)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
