@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/Alertify.service';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 
 
@@ -13,16 +14,30 @@ export class RegisterComponent implements OnInit {
   @Input() valuesFromHome: any;
   @Output() cancelRegister = new EventEmitter();
   model: any = {};
-  constructor(private authService: AuthService, private alertify: AlertifyService) { }
+  registerForm: FormGroup;
+  constructor(private authService: AuthService, private alertify: AlertifyService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.createRegisterForm();
   }
+  createRegisterForm() {
+    this.registerForm = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', [Validators.required,  Validators.minLength(4), Validators.maxLength(8)]],
+    confirmPassword: ['', Validators.required]
+  }, {validator: this.passwordMatchValidator} );
+  }
+  passwordMatchValidator(g: FormGroup){
+    return g.get('password').value === g.get('confirmPassword').value ? null : {mismatch: true};
+  }
+
   register(){
-    this.authService.register(this.model).subscribe(() => {
+    /*this.authService.register(this.model).subscribe(() => {
       this.alertify.success('Registration successfull');
     }, error => {
       this.alertify.error(error);
-    });
+    });*/
+    console.log(this.registerForm.value);
   }
   cancel(){
     this.cancelRegister.emit(false);
