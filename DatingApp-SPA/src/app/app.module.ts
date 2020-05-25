@@ -7,6 +7,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {TabsModule} from 'ngx-bootstrap/tabs';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
+import {ButtonsModule} from 'ngx-bootstrap/buttons';
 
 
 import { AppComponent } from './app.component';
@@ -80,9 +81,10 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
       BrowserAnimationsModule,
       BsDropdownModule.forRoot(),
       BsDatepickerModule.forRoot(),
+      ButtonsModule.forRoot(),
       PaginationModule.forRoot(),
-      RouterModule.forRoot(appRoutes),
       TabsModule.forRoot(),
+      RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
       FileUploadModule,
       JwtModule.forRoot({
